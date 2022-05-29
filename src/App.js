@@ -1,23 +1,15 @@
-import logo from './logo.svg';
 import './App.css';
+import { Form } from "react-bootstrap";
+import Search from './components/Search';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Location</h1>
+      <p>Tuesday, 29 June</p>
+      <p>14:12</p>
+      <Search />
+      
     </div>
   );
 }
