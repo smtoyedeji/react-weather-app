@@ -1,13 +1,19 @@
 import './App.css';
 import CurrentWeather from './components/CurrentWeather';
+import WeatherForecast from './components/WeatherForecast';
 
 function App() {
   return (
     <div className='app--container'>
       <CurrentWeather /> 
-      <div>
-        
-      </div>     
+      <WeatherForecast 
+        day="day"
+        icon="weather-icon"
+        minTemp="minTemp"
+        maxTemp="maxTemp"
+        humidity="humidity"
+        windSpeed="windspeed"
+      />     
     </div>
   );
 }
