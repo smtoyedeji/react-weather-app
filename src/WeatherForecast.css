@@ -1,0 +1,56 @@
+.weather--forecast {
+    background: #100E1D;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 140px);
+    grid-auto-rows: 200px;
+    justify-content: center;
+    padding: 50px;
+    gap: 30px;
+}
+
+.weather--card {
+    width: 100%;
+    margin: 0 auto;
+    background-color: #6E707A;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    font-weight: 500;
+    line-height: 18px;
+}
+.weather--card h4 {
+    margin-top: 18px;
+    font-size: 16px;
+    color: #FFF;
+}
+
+.weather--icon {
+    width: 55px;
+    height: 60px;
+    border: 1px solid black;
+    margin-top: 10px;
+}
+.temp {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.humidity-windspeed {
+    display: flex;
+    justify-content: space-around;
+}
+
+@media only screen and (min-width: 600px) {
+    .weather--forecast {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media only screen and (min-width: 1400px) {
+    .weather--forecast {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}

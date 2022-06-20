@@ -15,10 +15,6 @@
     align-items: center;
 }
 
-.color--one {
-    background-color: #6E707A !important;
-}
-
 .search--location input {
     color: #E7E7EB;
     background-color: #6E707A;
