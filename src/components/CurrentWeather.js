@@ -3,11 +3,15 @@ import "../CurrentWeather.css"
 import { MdMyLocation, MdLocationOn } from "react-icons/md";
 
 function CurrentWeather(props) {
+    console.log(props);
   return (
     <div className="current--weather">
         <div className="search--location">
             <form action="">
-                <input type="search" className="color--one" placeholder="Search . . ."/>
+                <input 
+                    type="search" 
+                    className="color--one" placeholder="Search . . ."
+                />
                 <button type="submit" className="color--one">
                     <MdMyLocation className="location--icon"/>
                 </button>

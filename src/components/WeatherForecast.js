@@ -2,7 +2,7 @@ import React from 'react';
 import "../WeatherForecast.css"
 
 export default function WeatherForecast(props) {
-    console.log(props)
+    
     return (
       <div className="weather--forecast">
         <div className="weather--card">
