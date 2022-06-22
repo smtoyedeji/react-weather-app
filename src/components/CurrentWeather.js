@@ -2,8 +2,7 @@ import React from 'react';
 import "../CurrentWeather.css"
 import { MdLocationOn } from "react-icons/md";
 
-function CurrentWeather(props) {
-    console.log(props);
+function CurrentWeather() {
   return (
     <div className="current--weather">
        
