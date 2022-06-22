@@ -2,46 +2,7 @@
 .current--weather {
     background: #1E213A;
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.search--location form {
-    color: #E7E7EB;
-    padding: 20px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.search--location input {
-    color: #E7E7EB;
-    background-color: #6E707A;
-    width: 150px;
-    height: 40px;
-    border: transparent;
-    padding: 10px 20px;
-}
-
-.search--location input::placeholder {
-    color: #E7E7EB;
-}
-.search--location input:focus {
-    outline: none;
-}
-
-.search--location button {
-    background-color: #6E707A;
-    border: transparent;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-}
-.location--icon {
-    color: #E7E7EB;
-    font-size: 22px;
-    text-align: center;
+    margin-top: 80px;
 }
 
 .current--weather--icon {
@@ -49,8 +10,6 @@
     width: 150px;
     border: 1px solid black;
     margin: 0 auto;
-    display: flex;
-    align-self: center;
 }
 
 .today {
@@ -93,13 +52,9 @@
 }
 
 @media only screen and (min-width: 768px) {
-    .search--location input {
-        width: 250px;
-        height: 40px;
-    }
     .current--weather--icon {
         width: 250px;
-        height: 250px;
+        height: 200px;
     }
     
 }

@@ -1,18 +1,72 @@
 .app--container {
     display: grid;
     overflow-y: hidden;
+    position: relative;
+}
+
+.search--location {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    background: #1E213A;
+}
+.search--location form {
+    color: #E7E7EB;
+    padding: 20px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%
+}
+.search--location input {
+    color: #E7E7EB;
+    background-color: #6E707A;
+    width: 150px;
+    height: 40px;
+    border: transparent;
+    padding: 10px 20px;
+}
+
+.search--location input::placeholder {
+    color: #E7E7EB;
+}
+.search--location input:focus {
+    outline: none;
+}
+
+.search--location button {
+    background-color: #6E707A;
+    border: transparent;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+.location--icon {
+    color: #E7E7EB;
+    font-size: 22px;
+    text-align: center;
 }
 
 .weather--details {
     background: #100E1D;
 }
 
-@media only screen and (min-width: 1025px) {
+
+
+@media only screen and (min-width: 1024px) {
     .app--container {
         grid-template-columns: 1fr 2fr;
     }
     .weather--details {
         height: 100vh;
+    }
+    .search--location {
+        max-width: 33.33%;
+    }
+    body {
+        overflow-y: hidden;
     }
     
 }
