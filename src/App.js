@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import CurrentWeather from './components/CurrentWeather';
 import CurrentWeatherDetails from './components/CurrentWeatherDetails';
+import Location from './components/Location';
 import WeatherForecast from './components/WeatherForecast';
 import { MdMyLocation } from "react-icons/md";
 
@@ -16,12 +17,24 @@ function App() {
 
   function search(e) {
     console.log(e.target.value);
-    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${e.target.value}&limit=5&appid=${api.key}`)
-    .then(res => res.json())
-    .then(data => {
-      console.log(data);
-    })
+      if(e.target.value.length > 4) {
+        fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${e.target.value}&limit=5&appid=${api.key}`)
+        .then(res => res.json())
+        .then(data => {
+        console.log(data);
+      })
+    }   
   }
+  // const searchInput = useRef(null);
+
+  // if (document.activeElement === searchInput.current) {
+  //   console.log("focus");
+  // }
+
+  const [focused, setFocused] = React.useState(false)
+  const onFocus = () => setFocused(true, console.log("focus"))
+  const onBlur = () => setFocused(false, console.log("blur"))
+
   return (
     <div className='app--container'>
        <div className="search--location">
@@ -30,15 +43,18 @@ function App() {
                     type="text" 
                     className="color--one" placeholder="Search . . ."
                     onKeyDown={search}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
                 />
                 <button type="submit" className="color--one">
                     <MdMyLocation className="location--icon"/>
                 </button>
             </form>
         </div>
-      <CurrentWeather 
+      {!focused && <CurrentWeather 
         searchInput="searchInput"
-      />
+      />}
+      {focused && <Location />}
       <div className="weather--details">
         <WeatherForecast 
           day="day"
