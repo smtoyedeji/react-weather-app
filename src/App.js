@@ -1,60 +1,43 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
-import CurrentWeather from './components/CurrentWeather';
-import CurrentWeatherDetails from './components/CurrentWeatherDetails';
 import Location from './components/Location';
+import CurrentWeatherDetails from './components/CurrentWeatherDetails';
 import WeatherForecast from './components/WeatherForecast';
-import { MdMyLocation } from "react-icons/md";
+import { CURRENT_WEATHER_API_URL, CURRENT_WEATHER_API_KEY } from './components/apicalls';
 
-
-const api = {
-  key: "b1d4a0483a5f8cc01330a55b41b09917",
-  base: "https://api.openweathermap.org/data/2.5/"
-}
 
 function App() {
-  const [location, setLocation] = useState("");
+  const [currentWeatherData, setCurrentWeatherData] = useState(null);
+  const [forecastWeatherData, setForecastWeatherData] = useState(null);
 
-  function search(e) {
-    console.log(e.target.value);
-      if(e.target.value.length > 4) {
-        fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${e.target.value}&limit=5&appid=${api.key}`)
-        .then(res => res.json())
-        .then(data => {
-        console.log(data);
+  const handleOnSearchChange = (searchValue) => {
+    const [lat, long] = searchValue.value.split(" ");
+
+
+    const fetchCurrentData = fetch(`${CURRENT_WEATHER_API_URL}weather?lat=${lat}&lon=${long}&units=imperial&appid=${CURRENT_WEATHER_API_KEY}`);
+    
+    const fetchForecastData = fetch(`${CURRENT_WEATHER_API_URL}forecast?lat=${lat}&lon=${long}&units=imperial&appid=${CURRENT_WEATHER_API_KEY}`);
+
+    Promise.all([fetchCurrentData, fetchForecastData])
+      .then(async ([currentData, forecastData]) => {
+        const currentWeather = await currentData.json();
+        const forecast = await forecastData.json();
+        setCurrentWeatherData({city: searchValue.label, ...currentWeather});
+        setForecastWeatherData({city: searchValue.label, ...forecast});
       })
-    }   
+      .catch(err => console.error(err));
+
+    
   }
-  // const searchInput = useRef(null);
 
-  // if (document.activeElement === searchInput.current) {
-  //   console.log("focus");
-  // }
 
-  const [focused, setFocused] = React.useState(false)
-  const onFocus = () => setFocused(true, console.log("focus"))
-  const onBlur = () => setFocused(false, console.log("blur"))
 
   return (
     <div className='app--container'>
-       <div className="search--location">
-            <form>
-                <input 
-                    type="text" 
-                    className="color--one" placeholder="Search . . ."
-                    onKeyDown={search}
-                    onFocus={onFocus}
-                    onBlur={onBlur}
-                />
-                <button type="submit" className="color--one">
-                    <MdMyLocation className="location--icon"/>
-                </button>
-            </form>
-        </div>
-      {!focused && <CurrentWeather 
-        searchInput="searchInput"
-      />}
-      {focused && <Location />}
+      <Location 
+        onSearchChange={handleOnSearchChange}
+        data={currentWeatherData}
+      />
       <div className="weather--details">
         <WeatherForecast 
           day="day"
@@ -64,8 +47,8 @@ function App() {
           humidity="humidity"
           windSpeed="windspeed"
         />
-        <CurrentWeatherDetails />
-      </div>
+        <CurrentWeatherDetails data={currentWeatherData}/>
+      </div> 
            
     </div>
   );

@@ -1,7 +1,7 @@
 import React from 'react';
-import "../WeatherForecast.css"
+import "../css/weatherForecast.css"
 
-export default function WeatherForecast(props) {
+export default function WeatherForecast() {
     
     return (
       <div className="weather--forecast">

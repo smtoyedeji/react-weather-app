@@ -1,16 +1,47 @@
 /* CurrentWeather Component styles */
+
 .current--weather {
     background: #1E213A;
     height: 100vh;
-    margin-top: 80px;
     padding-top: 20px;
+}
+
+.asyncpaginate {
+    width: 70%;
+}
+
+.search {
+    color: #333;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+button {
+    background-color: #FFF;
+    border: transparent;
+    width: 38px;
+    height: 38px;
+    border-radius: 5px !important;
+}
+.location--icon {
+    color: #6E707A;
+    font-size: 22px;
+    text-align: center;
+}
+
+.weather--details {
+    background: #100E1D;
 }
 
 .current--weather--icon {
     height: 180px;
     width: 150px;
-    border: 1px solid black;
     margin: 0 auto;
+    display: flex;
+    justify-content: center;
 }
 
 .today {
@@ -59,3 +90,4 @@
     }
     
 }
+
