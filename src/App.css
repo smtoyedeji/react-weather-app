@@ -8,6 +8,11 @@
     background: #100E1D;
 }
 
+.forecast {
+    display: flex;
+    margin: 32px;
+    justify-content: space-around;
+}
 
 
 @media only screen and (min-width: 1024px) {

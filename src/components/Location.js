@@ -10,15 +10,12 @@ function Location(props) {
 
   //create date object to get current date
   let date = new Date();
-  console.log(date)
-
   let day = date.getDate();
   let month = date.getMonth() + 1;
   let dayOfWeek = date.getDay();
   //get day of week by name
   let dayOfWeekName = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   let currentDay = dayOfWeekName[dayOfWeek];
-  console.log(currentDay);
   let monthName = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   let currentMonth = monthName[month - 1];
 
