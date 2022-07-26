@@ -6,3 +6,7 @@
     font-family: "Raleway";
 }
 
+body {
+    background-image: linear-gradient(to right, #100E1D , #1E213A);
+}
+

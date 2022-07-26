@@ -2,11 +2,9 @@ import React from 'react';
 import "../css/location.css"
 import { AsyncPaginate } from 'react-select-async-paginate';
 import { GEODB_API_URL, geoDBAPIoptions } from './apicalls';
-import { MdLocationOn, MdMyLocation } from "react-icons/md";
+import { MdLocationOn } from "react-icons/md";
 
 function Location(props) {
-  // let image = `icons/${props.data.weather[0].icon}.png`
-  // console.log(image);
 
   //create date object to get current date
   let date = new Date();
@@ -43,8 +41,8 @@ function Location(props) {
       .catch(err => console.error(err));
   }
 
+  
   const handleOnChange = (value) => {
-    console.log(value);
     setLocation(value);
     props.onSearchChange(value);
   }
@@ -60,9 +58,9 @@ function Location(props) {
           loadOptions={loadOptions}
           className="asyncpaginate"
         />
-        <button type="submit" className="color--one">
+        {/* <button type="submit" className="color--one">
           <MdMyLocation className="location--icon"/>
-        </button>
+        </button> */}
       </div>
       
       {/* <form>

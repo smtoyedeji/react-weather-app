@@ -1,19 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Location from './components/Location';
 import CurrentWeatherDetails from './components/CurrentWeatherDetails';
 import WeatherForecast from './components/WeatherForecast';
 import { CURRENT_WEATHER_API_URL, CURRENT_WEATHER_API_KEY } from './components/apicalls';
 
-
 function App() {
   const [currentWeatherData, setCurrentWeatherData] = useState(null);
-  const [forecastWeatherData, setForecastWeatherData] = useState(null);
-
+  const [forecastWeatherData, setForecastWeatherData] = useState(null); 
+  
   const handleOnSearchChange = (searchValue) => {
     const [lat, long] = searchValue.value.split(" ");
-
-
     const fetchCurrentData = fetch(`${CURRENT_WEATHER_API_URL}weather?lat=${lat}&lon=${long}&units=metric&appid=${CURRENT_WEATHER_API_KEY}`);
 
     const fetchForecastData = fetch(`${CURRENT_WEATHER_API_URL}forecast?lat=${lat}&lon=${long}&units=metric&appid=${CURRENT_WEATHER_API_KEY}`);
@@ -28,31 +25,24 @@ function App() {
       .catch(err => console.error(err));
   }
 
-  //console.log(forecastWeatherData.list);
-
-  if (forecastWeatherData) {
-    let forecastData = forecastWeatherData.list;
-    let forecast = [];
-    for (let i = 0; i < forecastData.length; i += 8) {
-      //console.log(forecastData[i]);
-      forecast.push(forecastData[i]);
-      console.log(forecast);
+  const forecastItems = (y) => {
+    let items = [];
+    for (let i = 0; i < y.length; i += 8) {  
+      items.push(y[i]);
     }
-    const forecastElements = forecast.map(item => {
+    let elements = items.map(item => {
       return (
         <WeatherForecast
           key={item.dt}
           icon={item.weather[0].icon}
           temp_max={item.main.temp_max}
           temp_min={item.main.temp_min}
+          date={item.dt_txt}
         />
       )
     })
+    return elements;
   }
-
-  
-
-
 
   return (
     <div className='app--container'>
@@ -61,10 +51,11 @@ function App() {
         data={currentWeatherData}
       />
       <div className="weather--details">
-        <div className="forecast">
-          {/* {forecastWeatherData && forecastElements} */}
+        <div className="forecast">          
+          {forecastWeatherData !== null && forecastItems(forecastWeatherData.list)}
         </div>
-        <CurrentWeatherDetails data={currentWeatherData} />
+        {currentWeatherData && <h4 className="heading">Today's Highlights</h4>}
+        {currentWeatherData && <CurrentWeatherDetails data={currentWeatherData} />}
       </div>
 
     </div>
